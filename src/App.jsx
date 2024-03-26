@@ -1,5 +1,18 @@
+import { Outlet } from 'react-router-dom';
+import { Header, Footer } from './components';
+
 const App = () => {
-  return <div className="grid h-screen place-content-center bg-gray-900 text-3xl text-white">Hi there.</div>;
+  return (
+    <div className="min-h-screen">
+      <div className="w-full">
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </div>
+  );
 };
 
 export default App;
