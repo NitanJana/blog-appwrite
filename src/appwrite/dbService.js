@@ -1,4 +1,4 @@
-import { Client, Database, Query } from 'appwrite';
+import { Client, Databases, Query } from 'appwrite';
 import appwriteConfig from '../config/appwriteConfig';
 
 export class DbService {
@@ -6,23 +6,18 @@ export class DbService {
   database;
   constructor() {
     this.client.setEndpoint(appwriteConfig.Endpoint).setProject(appwriteConfig.ProjectId);
-    this.database = new Database(this.client);
+    this.database = new Databases(this.client);
   }
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
     try {
-      return await this.database.createDocument(
-        appwriteConfig.DatabaseId,
-        appwriteConfig.CollectionId,
-        slug,
-        {
-          title,
-          content,
-          featuredImage,
-          status,
-          userId,
-        },
-      );
+      return await this.database.createDocument(appwriteConfig.DatabaseId, appwriteConfig.CollectionId, slug, {
+        title,
+        content,
+        featuredImage,
+        status,
+        userId,
+      });
     } catch (error) {
       console.log('Appwrite service :: createPost :: error', error);
     }
@@ -30,17 +25,12 @@ export class DbService {
 
   async updatePost(slug, { title, content, featuredImage, status }) {
     try {
-      return await this.database.updateDocument(
-        appwriteConfig.DatabaseId,
-        appwriteConfig.CollectionId,
-        slug,
-        {
-          title,
-          content,
-          featuredImage,
-          status,
-        },
-      );
+      return await this.database.updateDocument(appwriteConfig.DatabaseId, appwriteConfig.CollectionId, slug, {
+        title,
+        content,
+        featuredImage,
+        status,
+      });
     } catch (error) {
       console.log('Appwrite service :: updatePost :: error', error);
     }
@@ -58,11 +48,7 @@ export class DbService {
 
   async getPost(slug) {
     try {
-      return await this.database.getDocument(
-        appwriteConfig.DatabaseId,
-        appwriteConfig.CollectionId,
-        slug,
-      );
+      return await this.database.getDocument(appwriteConfig.DatabaseId, appwriteConfig.CollectionId, slug);
     } catch (error) {
       console.log('Appwrite service :: getPost :: error', error);
       return false;
@@ -71,11 +57,7 @@ export class DbService {
 
   async getPosts(queries = [Query.equal('status', 'active')]) {
     try {
-      return await this.database.listDocuments(
-        appwriteConfig.DatabaseId,
-        appwriteConfig.CollectionId,
-        queries,
-      );
+      return await this.database.listDocuments(appwriteConfig.DatabaseId, appwriteConfig.CollectionId, queries);
     } catch (error) {
       console.log('Appwrite service :: getPosts :: error', error);
       return false;
