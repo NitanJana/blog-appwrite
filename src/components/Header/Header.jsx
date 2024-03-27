@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { useSelector } from 'react-redux';
-import { BrandLogo, SignupBtn, LoginBtn, LogoutBtn } from '../index';
+import { BrandLogo, SignupBtn, LoginBtn, LogoutBtn, SecondaryBtn, PrimaryBtn } from '../index';
 
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
@@ -101,9 +101,9 @@ const Header = () => {
                   </nav>
                 </div>
                 <div className="mt-2 space-y-2">
-                  {!authStatus && <SignupBtn className="w-full" />}
-                  {!authStatus && <LoginBtn className="w-full" />}
-                  {authStatus && <LogoutBtn className="w-full" />}
+                  {!authStatus && <SecondaryBtn className="w-full" >Sign Up</SecondaryBtn>}
+                  {!authStatus && <PrimaryBtn className="w-full" >Log In</PrimaryBtn>}
+                  {authStatus && <PrimaryBtn className="w-full" >Log Out</PrimaryBtn>}
                 </div>
               </div>
             </div>

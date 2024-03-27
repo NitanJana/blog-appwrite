@@ -1,9 +1,5 @@
 import BrandLogo from './Logos/BrandLogo';
 import Header from './Header/Header';
-import SignupBtn from './Header/SignupBtn';
-import LoginBtn from './Header/LoginBtn';
-import LogoutBtn from './Header/LogoutBtn';
-import Container from './Container/Container';
 import Footer from './Footer/Footer';
 import FooterItem from './Footer/FooterItem';
 import SocialBtn from './Footer/SocialBtn';
@@ -11,16 +7,16 @@ import Input from './Input';
 import Login from './Login';
 import Signup from './Signup';
 import PostCard from './PostCard';
-import RTE from './RTE';
+import PostForm from './PostForm/PostForm';
+import RTE from './PostForm/RTE';
+import Select from './PostForm/Select';
 import AuthProtect from './AuthProtect';
+import PrimaryBtn from './Buttons/PrimaryBtn';
+import SecondaryBtn from './Buttons/SecondaryBtn';
 
 export {
   BrandLogo,
   Header,
-  SignupBtn,
-  LoginBtn,
-  LogoutBtn,
-  Container,
   Footer,
   FooterItem,
   SocialBtn,
@@ -28,6 +24,10 @@ export {
   Login,
   Signup,
   PostCard,
+  PostForm,
   RTE,
+  Select,
   AuthProtect,
+  PrimaryBtn,
+  SecondaryBtn,
 };
