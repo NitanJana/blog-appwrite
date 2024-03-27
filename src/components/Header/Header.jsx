@@ -33,7 +33,7 @@ const Header = () => {
     <header className="relative w-full bg-white px-12 py-4 ">
       <nav className="mx-auto flex w-full items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center gap-x-2  space-x-2">
-          <BrandLogo width="60px" />
+          <BrandLogo size="60px" />
           <span className="text-xl font-bold">Blog</span>
         </div>
         <div className="hidden grow items-start lg:flex ">

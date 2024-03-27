@@ -1,5 +1,6 @@
 import { BrandLogo, FooterItem, SocialBtn } from '../index';
 import { facebook, twitter, instagram } from '../../assets';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const footerItems = [
@@ -47,13 +48,12 @@ const Footer = () => {
         <div className="container relative z-10 mx-auto px-4">
           <div className="-m-8 flex flex-wrap items-center justify-between">
             <div className="w-auto p-8">
-              {/* TODO: use Link instead of a tag */}
-              <a href="#">
+              <Link to="/">
                 <div className="inline-flex items-center gap-x-4 p-2">
-                  <BrandLogo width="50px" />
+                  <BrandLogo size="50px" />
                   <span className="text-lg font-bold">Blog</span>
                 </div>
-              </a>
+              </Link>
             </div>
             <div className="w-auto p-8">
               <ul className="-m-5 flex flex-wrap items-center">

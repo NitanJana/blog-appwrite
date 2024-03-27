@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { brand } from '../../assets';
-const BrandLogo = ({ width = '60px' }) => {
-  return <img src={brand} alt="" width={width} height={width} className="rounded-full" />;
+const BrandLogo = ({ size = '60px' }) => {
+  return <img src={brand} alt="" width={size} height={size} className="rounded-full" />;
 };
 
 export default BrandLogo;
 
 BrandLogo.propTypes = {
-  width: PropTypes.string,
+  size: PropTypes.string,
 };
