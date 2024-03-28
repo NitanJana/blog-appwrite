@@ -4,6 +4,7 @@ const appwriteConfig = {
   DatabaseId: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
   CollectionId: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
   StorageId: String(import.meta.env.VITE_APPWRITE_STORAGE_ID),
+  TinymceApiKey: String(import.meta.env.VITE_TINYMCE_API),
 };
 
 export default appwriteConfig;

@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { storageService } from '../appwrite';
 
 const PostCard = ({ $id, title, featuredImage }) => {
   return (
     <Link to={`/post/${$id}`}>
       <div className="border">
-        <img src={featuredImage} className="aspect-video w-full rounded-md" alt="" />
+        <img src={storageService.getFilePreview(featuredImage)} className="aspect-video w-full rounded-md" alt="" />
         <div className="min-h-min p-3">
           <p className="mt-4 flex-1 text-base font-semibold text-gray-900">{title}</p>
           {/* <p className="mt-4 w-full text-xs font-semibold leading-tight text-gray-700">#{category}</p> */}

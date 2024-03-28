@@ -16,10 +16,10 @@ const Signup = () => {
   const createAccount = async (data) => {
     setError('');
     try {
-      const account = await authService.createUser(data.email, data.password, data.name);
+      const account = await authService.createUser(data);
       if (account) {
         const user = await authService.getCurrentUser();
-        if (user) dispatch(login(user));
+        if (user) dispatch(login(user.userData));
         navigate('/');
       }
     } catch (error) {
@@ -29,7 +29,7 @@ const Signup = () => {
 
   return (
     <section>
-      <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16  lg:px-8 lg:py-24">
+      <div className="flex items-center justify-center px-4 py-6 sm:px-6 sm:py-16  lg:px-8 lg:py-12">
         <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
           <div className="mb-2 flex justify-center">
             <BrandLogo size="80px" />
@@ -69,9 +69,9 @@ const Signup = () => {
                   placeholder="Password"
                   {...register('password', {
                     required: true,
-                    minLength: 8,
-                    maxLength: 20,
-                    pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/,
+                    // minLength: 8,
+                    // maxLength: 20,
+                    // pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/,
                   })}
                 />
                 {/* TODO: add forget password functionality

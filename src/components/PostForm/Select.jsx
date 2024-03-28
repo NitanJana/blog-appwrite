@@ -4,8 +4,12 @@ import { forwardRef, useId } from 'react';
 const Select = forwardRef(function Select({ options, label, className, ...props }, ref) {
   const id = useId();
   return (
-    <div className="w-full">
-      {label && <label htmlFor={id} className=""></label>}
+    <div className="flex w-full flex-col gap-2">
+      {label && (
+        <label htmlFor={id} className="font-semibold">
+          {`${label}:`}
+        </label>
+      )}
       <select
         id={id}
         ref={ref}

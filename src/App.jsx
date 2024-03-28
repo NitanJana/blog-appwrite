@@ -1,19 +1,38 @@
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { authService } from './appwrite';
+import { login, logout } from './store/authSlice';
+import { Footer, Header } from './components';
 import { Outlet } from 'react-router-dom';
-import { Header, Footer, Login, Signup, PostCard, RTE, Select } from './components';
 
-const App = () => {
-  return (
-    <div className="min-h-screen">
-      <div className="w-full">
-        {/* <Header /> */}
-        {/* <main>
+function App() {
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    authService
+      .getCurrentUser()
+      .then((userData) => {
+        if (userData) {
+          dispatch(login({ userData }));
+        } else {
+          dispatch(logout());
+        }
+      })
+      .finally(() => setLoading(false));
+  }, [dispatch]);
+
+  return !loading ? (
+    <div className="flex min-h-screen flex-wrap content-between">
+      <div className="block w-full">
+        <Header />
+        <main>
           <Outlet />
-        </main> */}
-        {/* <Footer /> */}
-        <Select options={['active', 'inactive']} label="Status" className="mb-4" />
+        </main>
+        <Footer />
       </div>
     </div>
-  );
-};
+  ) : null;
+}
 
 export default App;

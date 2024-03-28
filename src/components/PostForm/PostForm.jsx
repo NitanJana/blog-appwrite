@@ -74,7 +74,7 @@ const PostForm = ({ post }) => {
   }, [watch, setValue, slugTransform]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap px-16 py-4">
       <div className="w-2/3 px-2">
         <Input label="Title :" placeholder="Title" className="mb-4" {...register('title', { required: true })} />
         <Input
@@ -118,15 +118,12 @@ const PostForm = ({ post }) => {
 
 PostForm.propTypes = {
   post: PropTypes.shape({
+    $id: PropTypes.string,
     title: PropTypes.string,
     content: PropTypes.string,
     status: PropTypes.string,
     featuredImage: PropTypes.string,
-    $id: PropTypes.string,
-    // category: PropTypes.string,
-    // author: PropTypes.string,
-    // authorId: PropTypes.string,
   }),
-};
+}
 
 export default PostForm;

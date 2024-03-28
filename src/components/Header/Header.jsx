@@ -1,16 +1,21 @@
 import { useState } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
-import { useSelector } from 'react-redux';
-import { BrandLogo, SignupBtn, LoginBtn, LogoutBtn, SecondaryBtn, PrimaryBtn } from '../index';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrandLogo, SecondaryBtn, PrimaryBtn } from '../index';
+import { Link, useNavigate } from 'react-router-dom';
+import { authService } from '../../appwrite';
+import { logout } from '../../store/authSlice';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
-  
+
   const menuItems = [
     {
       name: 'Home',
@@ -45,17 +50,29 @@ const Header = () => {
                   key={item.name}
                   className="inline-flex cursor-pointer items-center text-lg font-semibold text-gray-800 hover:text-gray-900"
                 >
-                  <a href={item.path} className="p-1">
+                  <Link to={item.path} className="p-1">
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
           </ul>
         </div>
-        <div className="hidden space-x-2 lg:block">
-          {!authStatus && <SignupBtn />}
-          {!authStatus && <LoginBtn />}
-          {authStatus && <LogoutBtn />}
+        <div className="hidden space-x-2 lg:flex ">
+          {!authStatus && (
+            <SecondaryBtn onClick={() => navigate('/signup')} className="">
+              Sign Up
+            </SecondaryBtn>
+          )}
+          {!authStatus && (
+            <PrimaryBtn onClick={() => navigate('/login')} className="">
+              Log In
+            </PrimaryBtn>
+          )}
+          {authStatus && (
+            <PrimaryBtn onClick={() => authService.logout().then(dispatch(logout()))} className="">
+              Log Out
+            </PrimaryBtn>
+          )}
         </div>
         <div className="lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
@@ -87,23 +104,35 @@ const Header = () => {
                     {menuItems
                       .filter((item) => item.active)
                       .map((item) => (
-                        <a
+                        <Link
+                          to={item.path}
                           key={item.name}
-                          href={item.path}
                           className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
                         >
                           <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
                           <span>
                             <ChevronRight className="ml-3 h-4 w-4" />
                           </span>
-                        </a>
+                        </Link>
                       ))}
                   </nav>
                 </div>
                 <div className="mt-2 space-y-2">
-                  {!authStatus && <SecondaryBtn className="w-full" >Sign Up</SecondaryBtn>}
-                  {!authStatus && <PrimaryBtn className="w-full" >Log In</PrimaryBtn>}
-                  {authStatus && <PrimaryBtn className="w-full" >Log Out</PrimaryBtn>}
+                  {!authStatus && (
+                    <SecondaryBtn onClick={() => navigate('/signup')} className="w-full">
+                      Sign Up
+                    </SecondaryBtn>
+                  )}
+                  {!authStatus && (
+                    <PrimaryBtn onClick={() => navigate('/login')} className="w-full">
+                      Log In
+                    </PrimaryBtn>
+                  )}
+                  {authStatus && (
+                    <PrimaryBtn onClick={() => authService.logout().then(dispatch(logout()))} className="w-full">
+                      Log Out
+                    </PrimaryBtn>
+                  )}
                 </div>
               </div>
             </div>

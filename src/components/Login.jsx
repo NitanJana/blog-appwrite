@@ -17,10 +17,10 @@ const Login = () => {
   const loginHandler = async (data) => {
     setError('');
     try {
-      const account = await authService.login(data.email, data.password);
+      const account = await authService.login(data);
       if (account) {
         const user = await authService.getCurrentUser();
-        if (user) dispatch(login(user));
+        if (user) dispatch(login(user.userData));
         navigate('/');
       }
     } catch (error) {
@@ -68,9 +68,9 @@ const Login = () => {
                   placeholder="Password"
                   {...register('password', {
                     required: true,
-                    minLength: 8,
-                    maxLength: 20,
-                    pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/,
+                    // minLength: 8,
+                    // maxLength: 20,
+                    // pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/,
                   })}
                 />
                 {/* TODO: add forget password functionality

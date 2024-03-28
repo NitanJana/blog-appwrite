@@ -6,7 +6,7 @@ const Input = forwardRef(function Input({ label, type = 'text', placeholder, cla
   const id = useId();
   return (
     <div className="flex w-full flex-col gap-2">
-      <label className="text-base font-medium text-gray-900" htmlFor={id}>
+      <label className="text-base font-semibold text-gray-900" htmlFor={id}>
         {label}
       </label>
       <input
