@@ -10,7 +10,6 @@ export class DbService {
   }
 
   async createPost({ title, slug, content, featuredImage, status, userId }) {
-    console.log(title, slug, content, featuredImage, status, userId);
     try {
       return await this.database.createDocument(appwriteConfig.DatabaseId, appwriteConfig.CollectionId, slug, {
         title,

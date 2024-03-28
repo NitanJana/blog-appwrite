@@ -9,7 +9,7 @@ import { Input, PrimaryBtn, RTE, Select } from '../';
 
 const PostForm = ({ post }) => {
   const navigate = useNavigate();
-  const userData = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
   const { register, handleSubmit, watch, setValue, getValues, control } = useForm({
     defaultValues: {
       title: post?.title || '',
@@ -44,7 +44,7 @@ const PostForm = ({ post }) => {
       if (file) {
         const fileId = file.$id;
         data.featuredImage = fileId;
-        const dbPost = await dbService.createPost({ ...data, userId: userData.$id });
+        const dbPost = await dbService.createPost({ ...data, userId: user.$id });
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);
@@ -74,7 +74,7 @@ const PostForm = ({ post }) => {
   }, [watch, setValue, slugTransform]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap px-16 py-4">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap py-4">
       <div className="w-2/3 px-2">
         <Input label="Title :" placeholder="Title" className="mb-4" {...register('title', { required: true })} />
         <Input
@@ -124,6 +124,6 @@ PostForm.propTypes = {
     status: PropTypes.string,
     featuredImage: PropTypes.string,
   }),
-}
+};
 
 export default PostForm;

@@ -12,9 +12,9 @@ function App() {
   useEffect(() => {
     authService
       .getCurrentUser()
-      .then((userData) => {
-        if (userData) {
-          dispatch(login({ userData }));
+      .then((user) => {
+        if (user) {
+          dispatch(login(user));
         } else {
           dispatch(logout());
         }
@@ -26,7 +26,7 @@ function App() {
     <div className="flex min-h-screen flex-wrap content-between">
       <div className="block w-full">
         <Header />
-        <main>
+        <main className="w-full px-16">
           <Outlet />
         </main>
         <Footer />
