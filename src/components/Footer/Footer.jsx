@@ -47,7 +47,7 @@ const Footer = () => {
       <section className="relative overflow-hidden p-8">
         <div className="container relative z-10 mx-auto px-4">
           <div className="-m-8 flex flex-wrap items-center justify-between">
-            <div className="w-auto p-8">
+            <div className="w-auto px-8 py-4">
               <Link to="/">
                 <div className="inline-flex items-center gap-x-4 p-2">
                   <BrandLogo size="50px" />
@@ -55,15 +55,15 @@ const Footer = () => {
                 </div>
               </Link>
             </div>
-            <div className="w-auto p-8">
-              <ul className="-m-5 flex flex-wrap items-center">
+            <div className="w-auto px-8 py-4">
+              <ul className="flex flex-wrap items-center">
                 {footerItems.map((item) => (
                   <FooterItem key={item.name} name={item.name} url={item.url} />
                 ))}
               </ul>
             </div>
-            <div className="w-auto p-8">
-              <div className="-m-1.5 flex flex-wrap">
+            <div className="w-auto px-8 py-4">
+              <div className="flex flex-wrap">
                 {socialButtons.map((item) => (
                   <SocialBtn key={item.name} name={item.name} image={item.image} url={item.url} />
                 ))}
