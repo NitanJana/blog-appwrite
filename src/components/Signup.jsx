@@ -44,12 +44,14 @@ const Signup = () => {
           <form onSubmit={handleSubmit(createAccount)} className="mt-8">
             <div className="space-y-5">
               <Input
+                autoComplete="name"
                 type="text"
                 label="Name"
                 placeholder="Name"
                 {...register('name', { required: true, minLength: 3, maxLength: 30, pattern: /^[a-zA-Z\s]*$/ })}
               />
               <Input
+                autoComplete="email"
                 type="email"
                 label="Email"
                 placeholder="Email"
@@ -80,7 +82,7 @@ const Signup = () => {
                   Forgot password?{' '}
                 </a> */}
               </div>
-              {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+              {error && <p className="mt-1 text-center text-sm text-red-600">{error}</p>}
               <div>
                 <button
                   type="submit"

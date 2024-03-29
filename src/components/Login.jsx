@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <section>
-      <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16  lg:px-8 lg:py-24">
+      <div className="lg: flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-12">
         <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
           <div className="mb-2 flex justify-center">
             <BrandLogo size="80px" />
@@ -49,6 +49,7 @@ const Login = () => {
           <form onSubmit={handleSubmit(loginHandler)} className="mt-8">
             <div className="space-y-5">
               <Input
+                autoComplete="email"
                 type="email"
                 label="Email"
                 placeholder="Email"
@@ -79,7 +80,7 @@ const Login = () => {
                   Forgot password?{' '}
                 </a> */}
               </div>
-              {error && <p className="mt-1 text-xs text-red-500">{error}</p>}
+              {error && <p className="mt-1 text-center text-sm text-red-600">{error}</p>}
               <div>
                 <button
                   type="submit"
