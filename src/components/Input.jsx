@@ -27,7 +27,6 @@ Input.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,
-  ref: PropTypes.any,
 };
 
 export default Input;
