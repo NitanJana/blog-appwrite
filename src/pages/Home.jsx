@@ -15,7 +15,7 @@ function Home() {
     });
   }, []);
 
-  if (posts.length === 0) {
+  if (posts.length === 0 || !authStatus) {
     return (
       <div className="mt-4 min-h-[40vh] w-full py-8 text-center">
         <div className="flex flex-wrap">
