@@ -23,7 +23,7 @@ const Header = () => {
       active: true,
     },
     {
-      name: 'Posts',
+      name: 'My Posts',
       path: '/posts',
       active: authStatus,
     },
