@@ -4,6 +4,7 @@ import Footer from './Footer/Footer';
 import FooterItem from './Footer/FooterItem';
 import SocialBtn from './Footer/SocialBtn';
 import Input from './Input';
+import Password from './Password';
 import Login from './Login';
 import Signup from './Signup';
 import PostCard from './PostCard';
@@ -21,6 +22,7 @@ export {
   FooterItem,
   SocialBtn,
   Input,
+  Password,
   Login,
   Signup,
   PostCard,

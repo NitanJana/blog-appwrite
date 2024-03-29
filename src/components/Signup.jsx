@@ -1,5 +1,5 @@
 import { ArrowRight, LoaderCircle } from 'lucide-react';
-import { BrandLogo, Input } from './index';
+import { BrandLogo, Input, Password } from './index';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -69,8 +69,7 @@ const Signup = () => {
                 })}
               />
               <div className="flex flex-col items-end">
-                <Input
-                  type="password"
+                <Password
                   label="Password"
                   placeholder="Password"
                   {...register('password', {
@@ -79,7 +78,7 @@ const Signup = () => {
                     // maxLength: 20,
                     // pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,20}$/,
                   })}
-                />
+                ></Password>
                 {/* TODO: add forget password functionality
                 <a href="#" title="" className="text-sm font-semibold text-black hover:underline">
                   {' '}

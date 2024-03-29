@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { PostCard } from '../components';
 import dbService from '../appwrite/dbService';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const authStatus = useSelector((state) => state.auth.status);
   const [posts, setPosts] = useState([]);
-
+  
   useEffect(() => {
     dbService.getPosts([]).then((posts) => {
       if (posts) {
@@ -20,8 +21,17 @@ function Home() {
       <div className="mt-4 min-h-[40vh] w-full py-8 text-center">
         <div className="flex flex-wrap">
           <div className="w-full p-2">
-            <h1 className="text-2xl font-bold hover:text-gray-500">
-              {authStatus ? 'No posts yet' : 'Login to read posts'}
+            <h1 className="text-2xl font-bold ">
+              {authStatus ? (
+                'No posts yet. Be the first!'
+              ) : (
+                <div>
+                  <Link to="/login" className="underline hover:text-gray-500">
+                    Login
+                  </Link>{' '}
+                  to see posts
+                </div>
+              )}
             </h1>
           </div>
         </div>
