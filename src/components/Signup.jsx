@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, LoaderCircle } from 'lucide-react';
 import { BrandLogo, Input } from './index';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -11,9 +11,11 @@ const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
 
   const createAccount = async (data) => {
+    setLoading(true);
     setError('');
     try {
       const account = await authService.createUser(data);
@@ -24,6 +26,8 @@ const Signup = () => {
       }
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -88,7 +92,12 @@ const Signup = () => {
                   type="submit"
                   className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                 >
-                  Sign up <ArrowRight className="ml-2" size={16} />
+                  Sign up{' '}
+                  {!loading ? (
+                    <ArrowRight className="ml-2 " size={16} />
+                  ) : (
+                    <LoaderCircle className="ml-2 animate-spin" size={16} />
+                  )}
                 </button>
               </div>
             </div>

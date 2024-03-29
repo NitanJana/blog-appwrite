@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, LoaderCircle } from 'lucide-react';
 import { BrandLogo, Input } from './index';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -13,8 +13,10 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const loginHandler = async (data) => {
+    setLoading(true);
     setError('');
     try {
       const account = await authService.login(data);
@@ -25,6 +27,8 @@ const Login = () => {
       }
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,7 +90,12 @@ const Login = () => {
                   type="submit"
                   className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                 >
-                  Log in <ArrowRight className="ml-2" size={16} />
+                  Log in{' '}
+                  {!loading ? (
+                    <ArrowRight className="ml-2 " size={16} />
+                  ) : (
+                    <LoaderCircle className="ml-2 animate-spin" size={16} />
+                  )}
                 </button>
               </div>
             </div>
